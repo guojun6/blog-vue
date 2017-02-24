@@ -1,0 +1,25 @@
+$REM:            24;//rem unit
+@function REM($n){
+    @return ($n/$REM)*1rem;
+}
+// prefixer
+// 默认这里将输出webkit前缀，moz前缀和标准
+@mixin prefixer($property, $value, $prefixes: webkit moz) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit and $prefixForWebkit == true {
+      -webkit-#{$property}:#{$value};
+    }
+    @else if $prefix == moz and $prefixForMozilla == true {
+      -moz-#{$property}:#{$value};
+    }
+    @else if $prefix == o and $prefixForMozilla == true {
+      -o-#{$property}:#{$value};
+    }
+    @else if $prefix == ms and $prefixForMicrosoft == true {
+      -ms-#{$property}:#{$value};
+    }
+  }
+  @if $prefixNo {
+    #{$property}: $value;
+  }
+}
